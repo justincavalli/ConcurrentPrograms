@@ -45,6 +45,7 @@ public class HelloWorldThread extends Thread
         }
         
         // interrupt all the threads in the hashmap and close the program
+        input.close();
         for(long key : threads.keySet())
             threads.get(key).interrupt();
 
