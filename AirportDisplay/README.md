@@ -1,0 +1,7 @@
+Start by downloading the codeDownload code. This exercise will use a display of the kind commonly found in airports, where information about upcoming flights is given. There are three Main methods, given by three java files: Main1, Main2, and Main3. They are increasingly more complex in what they do with the display. Start by running Main1 and Main2 in order to understand the code.
+
+The exercise itself uses Main3. Your task is to write a simple multi-threaded program, a skeleton of which is already in Main3. Main3.java shows the structure of a simple main program that creates a display d and starts two threads, one executing the static procedure addProc(d), the other executing deleteProc(d). You must complete the bodies of these two procedures. Fill addProc with a sequence of addRow commands, interspersed with suitable naps. Similarly, fill deleteProc with calls to deleteRow(0). To allow for a not too boring simulation, naps should be in the order of seconds (or fractions of seconds) and not minutes as in a real airport.
+
+If you do this and run your program, you will probably see some unintended behaviour. You should make sure that you understand how these problems can occur. In fact, the class JDisplay2 is not thread safe; it does not guarantee correct behaviour when its methods are accessed by concurrent threads.
+
+Your task: make JDisplay2 thread safe, so that those glitches are eliminated.
