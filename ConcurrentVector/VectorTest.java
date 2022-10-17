@@ -10,10 +10,13 @@ public class VectorTest {
     }
 
     private String getLast() {
-	int lastIndex = people.size() - 1;
-	if (lastIndex >= 0)
-	    return people.get(lastIndex);
-	else return "";
+		synchronized(people) {
+			int lastIndex = people.size() - 1;
+		
+			if (lastIndex >= 0)
+				return people.get(lastIndex);
+			else return "";
+		}
     }
 
     private void deleteLast() {
