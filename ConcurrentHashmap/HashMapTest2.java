@@ -1,36 +1,30 @@
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.Vector;
 
-public class HashMapTest {
+public class HashMapTest2 {
 
     private boolean running = true;
-    private HashMap<String, Integer> people = new HashMap<String, Integer>();
+    private ConcurrentHashMap<String, Integer> people = new ConcurrentHashMap<String, Integer>();
 
     private void addPerson() {
-		synchronized(people) {
-			people.put(RandomUtils.randomString(), RandomUtils.randomInteger());
-		}
+		people.put(RandomUtils.randomString(), RandomUtils.randomInteger());
     }
 
     private void deletePeople(String pattern) {
-		synchronized(people) {
-			Vector<String> hasPattern = new Vector<String>();
-			for (String key : people.keySet()) {
-	    		if (key.contains(pattern))
-				hasPattern.add(key);
-			}
-			for (String key : hasPattern)
-	    		people.remove(key);
+		Vector<String> hasPattern = new Vector<String>();
+		for (String key : people.keySet()) {
+			if (key.contains(pattern))
+			hasPattern.add(key);
 		}
+		for (String key : hasPattern)
+			people.remove(key);
     }
 
     private void printPeople() {
-		synchronized(people) {
-			for (HashMap.Entry<String, Integer> entry : people.entrySet()) {
-				System.out.println(entry.getKey() + ": " + entry.getValue());
-			}
-			System.out.println("-----------------------------------------");
+		for (ConcurrentHashMap.Entry<String, Integer> entry : people.entrySet()) {
+			System.out.println(entry.getKey() + ": " + entry.getValue());
 		}
+		System.out.println("-----------------------------------------");
     }
 
     public void run() {
