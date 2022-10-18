@@ -1,5 +1,3 @@
-import java.util.concurrent.*;
-
 public class Main3 {
 
    private static void nap(int millisecs) {
@@ -26,7 +24,7 @@ public class Main3 {
 	// Add a sequence of deletions of row 0 with short random naps.
         for(int i = 0; i < 100; i++) {
             d.deleteRow(0);
-            nap(1300);
+            nap(2300);
         }
     }
 

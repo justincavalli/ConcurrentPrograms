@@ -43,19 +43,19 @@ public class JDisplay2 implements HighLevelDisplay {
     }
 
     public synchronized void addRow(String str) {
-	updateRow(usedRows,str);
-	flashRow(usedRows,1000);
-	usedRows++;
+		updateRow(usedRows,str);
+		flashRow(usedRows,1000);
+		usedRows++;
     }
 
     public synchronized void deleteRow(int row) {
 	if (row < usedRows) {
 	    for(int i = row+1; i < usedRows; i++)
-		updateRow(i-1,text[i]);
+			updateRow(i-1,text[i]);
 	    usedRows--;
 	    updateRow(usedRows,"");
 	    if(usedRows >= d.getRows())
-		flashRow(d.getRows()-1,1000);
+			flashRow(d.getRows()-1,1000);
 	}
     }
 
