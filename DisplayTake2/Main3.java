@@ -43,7 +43,7 @@ public class Main3 {
             }
             
             
-            nap(1300);
+            nap(2300);
         }
     }
 
