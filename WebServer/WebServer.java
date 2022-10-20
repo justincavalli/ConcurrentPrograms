@@ -11,6 +11,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
 import java.util.StringTokenizer;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Executor;
 
 // The tutorial can be found just here on the SSaurel's Blog : 
 // https://www.ssaurel.com/blog/create-a-simple-http-web-server-in-java
@@ -30,6 +32,8 @@ public class WebServer {
 	
     // Client Connection via Socket Class
     private Socket connect;
+
+	private static final Executor exec = Executors.newFixedThreadPool(50);
 	
     public WebServer(Socket c) {
 	connect = c;
@@ -42,13 +46,19 @@ public class WebServer {
 			
 	    // we listen until user halts server execution
 	    while (true) {
-		WebServer myServer = new WebServer(serverConnect.accept());
-		
-		if (verbose) {
-		    System.out.println("Connection opened. (" + new Date() + ")");
-		}
+			WebServer myServer = new WebServer(serverConnect.accept());
+			
+			if (verbose) {
+				System.out.println("Connection opened. (" + new Date() + ")");
+			}
 
-		myServer.handleRequest();
+			Runnable task = new Runnable() {
+				public void run() {
+					myServer.handleRequest();
+				}
+			};
+
+			exec.execute(task);
 	    }
 			
 	} catch (IOException e) {
