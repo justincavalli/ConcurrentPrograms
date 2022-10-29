@@ -1,4 +1,7 @@
+import java.util.Random;
 public class Main3 {
+
+    private static Random random = new Random();
 
    private static void nap(int millisecs) {
         try {
@@ -14,7 +17,7 @@ public class Main3 {
         for(int i = 0; i < 100; i++) {
             d.addRow("AAAAAAA " + i);
             d.addRow("BBBBBBB " + i);
-            nap(750);
+            nap(random.nextInt(2000));
         }
 
    }
@@ -24,7 +27,7 @@ public class Main3 {
 	// Add a sequence of deletions of row 0 with short random naps.
         for(int i = 0; i < 100; i++) {
             d.deleteRow(0);
-            nap(2300);
+            nap(random.nextInt(4000));
         }
     }
 
