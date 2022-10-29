@@ -1,8 +1,10 @@
 import java.util.concurrent.*;
+import java.util.Random;
 
 public class Main3 {
 
     private final static Semaphore semaphore = new Semaphore(1);
+    private static Random random = new Random();
 
    private static void nap(int millisecs) {
         try {
@@ -25,7 +27,7 @@ public class Main3 {
                 System.out.println(e);
             }
             
-            nap(750);
+            nap(random.nextInt(2000));
         }
 
    }
@@ -43,7 +45,7 @@ public class Main3 {
             }
             
             
-            nap(2300);
+            nap(random.nextInt(4000));
         }
     }
 
